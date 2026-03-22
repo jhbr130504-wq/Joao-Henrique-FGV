@@ -2,27 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// don't touch
 typedef char* string;
 
-// função que calcula total ou média
 float calc_hours(int hours[], int weeks, char output) {
     int total = 0;
 
-    // soma todas as horas
     for (int i = 0; i < weeks; i++) {
         total += hours[i];
     }
 
-    // retorna total ou média
     if (output == 'T') {
         return total;
-    } else { // 'M'
+    } else {
         return (float) total / weeks;
     }
 }
 
-// função para ler inteiro
 int get_int(string prompt) {
     int n;
     printf("%s", prompt);
@@ -37,7 +32,6 @@ int main(void) {
 
     char buffer[100];
 
-    // leitura das horas por semana
     for (int i = 0; i < weeks; i++) {
         sprintf(buffer, "semana %d: ", i + 1);
         hours[i] = get_int(buffer);
@@ -45,11 +39,9 @@ int main(void) {
 
     char output, c;
 
-    // valida entrada (T ou M)
     do {
         printf("entre T ou M: ");
 
-        // limpa buffer
         while ((c = getchar()) != '\n' && c != EOF);
 
         c = getchar();
@@ -57,10 +49,8 @@ int main(void) {
 
     } while (output != 'T' && output != 'M');
 
-    // imprime resultado
     printf("%.1f hours\n", calc_hours(hours, weeks, output));
 
-    // libera memória
     free(hours);
 
     return 0;
